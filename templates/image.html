@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .form-container {
+            margin: 20px auto;
+        }
+        input[type="text"] {
+            padding: 10px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+        }
+        .error-message {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Generate an Image</h1>
+    <div class="form-container">
+        <form method="POST">
+            <input type="text" name="keyword" placeholder="Enter a keyword" required>
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    {% if image_url %}
+    <h2>Image for "{{ keyword }}":</h2>
+    <img src="{{ image_url }}" alt="Generated Image">
+    {% endif %}
+    {% if error %}
+    <p class="error-message">{{ error }}</p>
+    {% endif %}
+    <a href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+</body>
+</html>

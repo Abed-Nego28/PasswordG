@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #007BFF;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header .title {
+            font-size: 24px;
+        }
+        header .user-actions {
+            font-size: 16px;
+        }
+        header .user-actions a {
+            color: white;
+            text-decoration: none;
+            margin-left: 15px;
+            padding: 8px 12px;
+            background-color: #0056b3;
+            border-radius: 5px;
+        }
+        header .user-actions a:hover {
+            background-color: #003f8a;
+        }
+        .container {
+            padding: 20px;
+            max-width: 900px;
+            margin: auto;
+        }
+        .welcome-message {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 22px;
+            color: #333;
+        }
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            padding: 20px;
+            text-align: center;
+        }
+        .card h2 {
+            margin-bottom: 15px;
+            font-size: 20px;
+            color: #333;
+        }
+        .card a {
+            display: inline-block;
+            text-decoration: none;
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        .card a:hover {
+            background-color: #0056b3;
+        }
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            padding: 15px 0;
+            background-color: #f1f1f1;
+            color: #777;
+            font-size: 14px;
+        }
+        .image-form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .image-form input[type="text"] {
+            padding: 10px;
+            width: 300px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .image-form button {
+            padding: 10px 15px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .image-form button:hover {
+            background-color: #0056b3;
+        }
+        .image-result img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+        }
+        .error-message {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="title">Dashboard</div>
+        <div class="user-actions">
+            <span>Welcome, {{ username }}</span>
+            <a href="{{ url_for('profile') }}">Profile</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </div>
+    </header>
+    <div class="container">
+        <p class="welcome-message">Hello, <strong>{{ username }}</strong>! What would you like to do today?</p>
+        
+        <!-- Password Generator -->
+        <div class="card">
+            <h2>Generate a Secure Password</h2>
+            <p>Quickly create strong, secure passwords for your accounts.</p>
+            <a href="{{ url_for('generate') }}">Generate Password</a>
+        </div>
+
+        <!-- Image Generator -->
+        <div class="image-form">
+            <h2>Generate an Image</h2>
+            <p>Search and display images based on a keyword.</p>
+            <form method="POST" action="{{ url_for('generate_image') }}">
+                <input type="text" name="keyword" placeholder="Enter a keyword" required>
+                <button type="submit">Search</button>
+            </form>
+            {% if image_url %}
+            <div class="image-result">
+                <h3>Image for "{{ keyword }}":</h3>
+                <img src="{{ image_url }}" alt="Generated Image" style="max-width: 100%; height: auto;">
+            </div>
+            {% endif %}
+            {% if error %}
+            <p class="error-message" style="color: red;">{{ error }}</p>
+            {% endif %}
+        </div>
+        
+    </div>
+    <footer>
+        © 2024 Abed. All rights reserved.
+    </footer>
+</body>
+</html>

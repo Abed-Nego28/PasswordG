@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #007BFF;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header .title {
+            font-size: 24px;
+        }
+        header .user-actions {
+            font-size: 16px;
+        }
+        header .user-actions a {
+            color: white;
+            text-decoration: none;
+            margin-left: 15px;
+            padding: 8px 12px;
+            background-color: #0056b3;
+            border-radius: 5px;
+        }
+        header .user-actions a:hover {
+            background-color: #003f8a;
+        }
+        .container {
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+            text-align: center;
+        }
+        .profile-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: left;
+        }
+        .profile-card h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .profile-card p {
+            margin: 5px 0;
+            font-size: 16px;
+        }
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            padding: 15px 0;
+            background-color: #f1f1f1;
+            color: #777;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="title">Profile</div>
+        <div class="user-actions">
+            <a href="{{ url_for('dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </div>
+    </header>
+    <div class="container">
+        <div class="profile-card">
+            <h2>User Profile</h2>
+            <p><strong>Username:</strong> {{ username }}</p>
+            <p><strong>Email:</strong> user@example.com</p>
+            <p><strong>Member Since:</strong> January 1, 2023</p>
+        </div>
+    </div>
+    <footer>
+        © 2024 Your App Name. All rights reserved.
+    </footer>
+</body>
+</html>
